@@ -13,7 +13,7 @@ if errorlevel 1 exit 1
 
 cd ..
 
-cmake -DBUILD_GUI=OFF -DARCH=ecp5 -DICEBOX_ROOT="%BASH_PREFIX%/share/trellis" -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -A "x64" -DBUILD_SHARED=OFF -DSTATIC_BUILD=ON "-DCMAKE_INSTALL_PREFIX=%BASH_PREFIX%" .
+cmake -DBUILD_GUI=OFF -DTRELLIS_INSTALL_PREFIX="%BASH_PREFIX%/share/trellis" -DARCH=ecp5 -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -A "x64" -DBUILD_SHARED=OFF -DSTATIC_BUILD=ON "-DCMAKE_INSTALL_PREFIX=%BASH_PREFIX%" .
 if errorlevel 1 exit 1
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
