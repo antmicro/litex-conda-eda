@@ -22,12 +22,15 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - pkg-config
-    - readline
-    - bison
+    - m2-bison   [win]
+    - m2-flex    [win]
+    - m2-make    [win]
+    - bison      [not win]
+    - flex       [not win]
+    - libffi     [not win]
+    - pkg-config [not win]
+    - readline   [not win]
     - tk
-    - libffi
-    - flex
     - iverilog
     - yosys
   run:
