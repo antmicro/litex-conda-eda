@@ -6,11 +6,7 @@ addons:
     update: false
 
 stages:
-  - "EDA Tools - Bitstream"
-  - "EDA Tools - Simulation"
   - "EDA Tools - Synthesis"
-  - "EDA Tools - PnR"
-  - "EDA Tools - Formal"
 
 jobs:
  include:
@@ -21,6 +17,10 @@ jobs:
     env:
     - PACKAGE=syn/yosys-plugins
   # Windows
+  - stage: "EDA Tools - Synthesis"
+    os: windows
+    env:
+    - PACKAGE=syn/yosys-plugins
   # OSX
   - stage: "EDA Tools - Synthesis"
     os: osx
