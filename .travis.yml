@@ -22,6 +22,10 @@ jobs:
     - PACKAGE=syn/yosys-plugins
   # Windows
   # OSX
+  - stage: "EDA Tools - Synthesis"
+    os: osx
+    env:
+    - PACKAGE=syn/yosys-plugins
 
 before_install:
  - source $TRAVIS_BUILD_DIR/.travis/common.sh
