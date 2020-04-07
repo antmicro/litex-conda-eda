@@ -1,0 +1,18 @@
+diff --git a/fasm-plugin/Makefile b/fasm-plugin/Makefile
+index 8c1a158..44d4114 100644
+--- a/fasm-plugin/Makefile
++++ b/fasm-plugin/Makefile
+@@ -1,8 +1,8 @@
+-CXX = $(shell yosys-config --cxx)
+-CXXFLAGS = $(shell yosys-config --cxxflags)
+-LDFLAGS = $(shell yosys-config --ldflags)
+-LDLIBS = $(shell yosys-config --ldlibs)
+-PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
++CXX = $(shell yosys-config --cxx |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++CXXFLAGS = $(shell yosys-config --cxxflags |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDFLAGS = $(shell yosys-config --ldflags |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDLIBS = $(shell yosys-config --ldlibs |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++PLUGINS_DIR = $(shell yosys-config --datdir |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")/plugins
+ 
+ OBJS = fasm.o
+ 
