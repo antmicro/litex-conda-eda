@@ -1,0 +1,60 @@
+diff --git a/fasm-plugin/Makefile b/fasm-plugin/Makefile
+index 8c1a158..8a89bd6 100644
+--- a/fasm-plugin/Makefile
++++ b/fasm-plugin/Makefile
+@@ -7,16 +7,16 @@ PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
+ OBJS = fasm.o
+
+ fasm.so: $(OBJS)
+-   $(CXX) $(CXXFLAGS) $(LDFLAGS) -shared -o $@ $^ $(LDLIBS)
++    $(CXX) $(CXXFLAGS) -v -E $^
+
+ .PHONY: install
+ install: fasm.so
+-   mkdir -p $(PLUGINS_DIR)
+-   cp $< $(PLUGINS_DIR)/$<
++    mkdir -p $(PLUGINS_DIR)
++    cp $< $(PLUGINS_DIR)/$<
+
+ test: install
+-   $(MAKE) -C tests all
++    $(MAKE) -C tests all
+
+ clean:
+-   rm -f *.d *.o fasm.so
++    rm -f *.d *.o fasm.so
+
+diff --git a/xdc-plugin/Makefile b/xdc-plugin/Makefile
+index e752504..1089d09 100644
+--- a/xdc-plugin/Makefile
++++ b/xdc-plugin/Makefile
+@@ -8,22 +8,22 @@ OBJS = xdc.o
+ VERILOG_MODULES = BANK.v
+
+ xdc.so: $(OBJS)
+-   $(CXX) $(CXXFLAGS) $(LDFLAGS) -shared -o $@ $^ $(LDLIBS)
++    $(CXX) $(CXXFLAGS) -v -E $^
+
+ install_plugin: xdc.so
+-   mkdir -p $(PLUGINS_DIR)
+-   cp $< $(PLUGINS_DIR)/$<
++    mkdir -p $(PLUGINS_DIR)
++    cp $< $(PLUGINS_DIR)/$<
+
+ install_modules: $(VERILOG_MODULES)
+-   mkdir -p $(PLUGINS_DIR)/fasm_extra_modules/
+-   cp $< $(PLUGINS_DIR)/fasm_extra_modules/$<
++    mkdir -p $(PLUGINS_DIR)/fasm_extra_modules/
++    cp $< $(PLUGINS_DIR)/fasm_extra_modules/$<
+
+ test: install_plugin install_modules
+-   $(MAKE) -C tests all
++    $(MAKE) -C tests all
+
+ .PHONY: install
+ install: install_modules install_plugin
+
+ clean:
+-   rm -f *.d *.o xdc.so
++    rm -f *.d *.o xdc.so
+
