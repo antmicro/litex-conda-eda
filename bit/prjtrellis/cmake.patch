@@ -1,0 +1,17 @@
+diff --git a/libtrellis/CMakeLists.txt b/libtrellis/CMakeLists.txt
+index 10fd498..3875d97 100644
+--- a/libtrellis/CMakeLists.txt
++++ b/libtrellis/CMakeLists.txt
+@@ -104,7 +104,11 @@ endif()
+ if (BUILD_PYTHON)
+     PYTHON_ADD_MODULE(pytrellis ${INCLUDE_FILES} ${SOURCE_FILES})
+     target_compile_definitions(pytrellis PRIVATE INCLUDE_PYTHON=1)
+-    target_link_libraries(pytrellis LINK_PUBLIC ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
++    if (APPLE)
++        target_link_libraries(pytrellis LINK_PUBLIC ${Boost_LIBRARIES} ${PYTHON_LIBRARIES} "-undefined dynamic_lookup -bundle")
++    else()
++        target_link_libraries(pytrellis LINK_PUBLIC ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
++    endif()
+ endif()
+ 
+ include(GNUInstallDirs)
