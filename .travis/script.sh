@@ -17,6 +17,10 @@ end_section "conda.check"
 
 $SPACER
 
+if [ $DOT_ON_STDOUT = 'true' ]; then
+    bash .travis/dot.sh &
+fi
+
 start_section "conda.build" "${GREEN}Building..${NC}"
 if [ $TRAVIS_OS_NAME != 'windows' ]; then
     $CONDA_PATH/bin/python $TRAVIS_BUILD_DIR/.travis-output.py /tmp/output.log conda build $CONDA_BUILD_ARGS
