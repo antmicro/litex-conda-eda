@@ -1,0 +1,26 @@
+diff --git a/ecp5/family.cmake b/ecp5/family.cmake
+index 9415e37..09bdaf2 100644
+--- a/ecp5/family.cmake
++++ b/ecp5/family.cmake
+@@ -9,10 +9,17 @@ if (NOT EXTERNAL_CHIPDB)
+     endif()
+ 
+     if (NOT DEFINED PYTRELLIS_LIBDIR)
+-        find_library(PYTRELLIS pytrellis.so
+-            PATHS ${TRELLIS_INSTALL_PREFIX}/lib/${TRELLIS_PROGRAM_PREFIX}trellis
+-            PATH_SUFFIXES ${TRELLIS_PROGRAM_PREFIX}trellis
+-            DOC "Location of pytrellis library")
++        if (CMAKE_HOST_WIN32)
++            find_library(PYTRELLIS pytrellis.pyd
++                PATHS ${TRELLIS_INSTALL_PREFIX}/Lib/${TRELLIS_PROGRAM_PREFIX}trellis
++                PATH_SUFFIXES ${TRELLIS_PROGRAM_PREFIX}trellis
++                DOC "Location of pytrellis library")
++        else()
++            find_library(PYTRELLIS pytrellis.so
++                PATHS ${TRELLIS_INSTALL_PREFIX}/lib/trellis
++                PATH_SUFFIXES ${TRELLIS_PROGRAM_PREFIX}trellis
++                DOC "Location of pytrellis library")
++        endif()
+ 
+         if ("${PYTRELLIS}" STREQUAL "PYTRELLIS-NOTFOUND")
+             message(FATAL_ERROR "Failed to locate pytrellis library!")

@@ -9,6 +9,8 @@ package:
 source:
   git_url: https://github.com/timvideos/nextpnr.git
   git_rev: master
+  patches:
+    - fix-pytrellis-find.patch
 
 build:
   # number: 201803050325
