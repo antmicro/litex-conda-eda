@@ -118,6 +118,12 @@ jobs:
     osx_image: xcode8.3
     env:
     - PACKAGE=pnr/nextpnr/ice40
+  - stage: "EDA Tools - PnR"
+    os: osx
+    dist: xcode8.3
+    env:
+    - PACKAGE=pnr/nextpnr/ecp5
+    - DOT_ON_STDOUT=true
 
 #  - stage: "EDA Tools - PnR"
 #    os: linux
