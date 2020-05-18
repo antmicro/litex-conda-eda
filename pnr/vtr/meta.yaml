@@ -9,6 +9,7 @@ source:
   git_rev: master
   patches:
     - osx.patch             [osx]
+    - windows.patch         [win]
 
 build:
   # number: 201803050325
@@ -26,29 +27,44 @@ requirements:
     - python                {{ python }}
     - clang 8.0             [osx]
     - clangxx 8.0           [osx]
+    - m2-bash               [win]
+    - m2-m4                 [win]
+    - m2-sed                [win]
+    - m2-grep               [win]
+    - m2-flex               [win]
+    - m2-autoconf           [win]
+    - m2-make               [win]
+    - m2w64-gcc             [win]
+    - m2-gperf              [win]
+    - m2-bison              [win]
+    - cmake
   host:
-    - bison 3.4
+    - bison 3.4             [not win]
+    - m2-bison              [win]
+    - flex                  [not win]
+    - m2-flex               [win]
     - cairo
     - cmake
-    - flex
     - fontconfig
-    - ncurses
+    - ncurses               [not win]
     - pkg-config
-    - readline
+    - m2-libreadline        [win]
+    - readline              [not win]
     - tk
+    - tbb
     - xorg-libice
     - xorg-libsm
     - xorg-libx11
     - xorg-libxcb
     - xorg-libxext
-    - xorg-libxft
+    - xorg-libxft           [not win]
   run:
-    - readline
+    - readline              [not win]
     - tk
     - cairo
     - fontconfig
     - xorg-libx11
-    - xorg-libxft
+    - xorg-libxft           [not win]
 
 #test:
 #  commands:

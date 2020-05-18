@@ -1,0 +1,84 @@
+diff --git a/abc/lib/pthread.h b/abc/lib/pthread.h
+index 5039a5d72..cdca75af6 100644
+--- a/abc/lib/pthread.h
++++ b/abc/lib/pthread.h
+@@ -305,10 +305,12 @@ enum {
+ 
+ #ifndef HAVE_STRUCT_TIMESPEC
+ #define HAVE_STRUCT_TIMESPEC 1
++#ifndef _WIN32
+ struct timespec {
+         long tv_sec;
+         long tv_nsec;
+ };
++#endif
+ #endif /* HAVE_STRUCT_TIMESPEC */
+ 
+ #ifndef SIG_BLOCK
+diff --git a/libs/librtlnumber/src/include/internal_bits.hpp b/libs/librtlnumber/src/include/internal_bits.hpp
+index 899832194..6365c1466 100644
+--- a/libs/librtlnumber/src/include/internal_bits.hpp
++++ b/libs/librtlnumber/src/include/internal_bits.hpp
+@@ -10,6 +10,7 @@
+ #define INTERNAL_BITS_HPP
+ 
+ #include <cstdint>
++#include <cctype>
+ #include <string>
+ #include <algorithm>
+ #include <vector>
+diff --git a/libs/librtlnumber/src/rtl_utils.cpp b/libs/librtlnumber/src/rtl_utils.cpp
+index c8a4984f8..657dccc46 100644
+--- a/libs/librtlnumber/src/rtl_utils.cpp
++++ b/libs/librtlnumber/src/rtl_utils.cpp
+@@ -6,6 +6,7 @@
+  *              Univerity of New Brunswick in Fredericton, New Brunswick, Canada
+  */
+ 
++#include <cctype>
+ #include "rtl_utils.hpp"
+ #include <algorithm>
+ #include <iostream>
+diff --git a/libs/libvtrutil/src/vtr_memory.h b/libs/libvtrutil/src/vtr_memory.h
+index 219fabb8e..0abc36900 100644
+--- a/libs/libvtrutil/src/vtr_memory.h
++++ b/libs/libvtrutil/src/vtr_memory.h
+@@ -4,6 +4,10 @@
+ #include <cstdlib>
+ #include <new>
+ 
++#ifdef _WIN32
++#define posix_memalign(p, a, s) (((*(p)) = _aligned_malloc((s), (a))), *(p) ?0 :errno)
++#endif
++
+ namespace vtr {
+ struct t_linked_vptr; //Forward declaration
+ 
+diff --git a/libs/libvtrutil/src/vtr_path.cpp b/libs/libvtrutil/src/vtr_path.cpp
+index e6bf293d7..35d9aa6ef 100644
+--- a/libs/libvtrutil/src/vtr_path.cpp
++++ b/libs/libvtrutil/src/vtr_path.cpp
+@@ -4,7 +4,11 @@
+ 
+ //TODO: currently this file assumes unix-like
+ //      in the future support windows
++#ifndef _WIN32
+ #include <unistd.h>
++#else
++#include <direct.h>
++#endif
+ 
+ #include <sstream>
+ 
+@@ -65,7 +69,11 @@ std::string getcwd() {
+     constexpr size_t BUF_SIZE = 500;
+     char buf[BUF_SIZE];
+ 
++#ifndef _WIN32
+     if (::getcwd(buf, BUF_SIZE)) {
++#else
++    if (_getcwd(buf, BUF_SIZE)) {
++#endif
+         return std::string(buf);
+     }
+ 
