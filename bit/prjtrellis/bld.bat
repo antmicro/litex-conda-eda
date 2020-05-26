@@ -14,8 +14,10 @@ vcpkg install boost-filesystem:x64-windows boost-program-options:x64-windows boo
 if errorlevel 1 exit 1
 
 REM Compile and install libtrellis
-cd ..\libtrellis 
+cd ..\libtrellis
 cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -A "x64" -DBUILD_PYTHON=ON -DBUILD_SHARED=ON -DSTATIC_BUILD=OFF "-DCMAKE_INSTALL_PREFIX=%BASH_PREFIX%" .
 if errorlevel 1 exit 1
+find . -name *trellis*
+ls lib
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
