@@ -1,8 +1,8 @@
 diff --git a/fasm-plugin/Makefile b/fasm-plugin/Makefile
-index 8c1a158..44d4114 100644
+index 8c1a158..70600a2 100644
 --- a/fasm-plugin/Makefile
 +++ b/fasm-plugin/Makefile
-@@ -1,8 +1,8 @@
+@@ -1,16 +1,16 @@
 -CXX = $(shell yosys-config --cxx)
 -CXXFLAGS = $(shell yosys-config --cxxflags)
 -LDFLAGS = $(shell yosys-config --ldflags)
@@ -13,6 +13,47 @@ index 8c1a158..44d4114 100644
 +LDFLAGS = $(shell yosys-config --ldflags |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
 +LDLIBS = $(shell yosys-config --ldlibs |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
 +PLUGINS_DIR = $(shell yosys-config --datdir |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")/plugins
-
+ 
  OBJS = fasm.o
-
+ 
+-fasm.so: $(OBJS)
++fasm.o: $(OBJS)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared -o $@ $^ $(LDLIBS)
+ 
+ .PHONY: install
+-install: fasm.so
++install: fasm.o
+ 	mkdir -p $(PLUGINS_DIR)
+ 	cp $< $(PLUGINS_DIR)/$<
+ 
+@@ -18,5 +18,5 @@ test: install
+ 	$(MAKE) -C tests all
+ 
+ clean:
+-	rm -f *.d *.o fasm.so
++	rm -f *.d *.o fasm.o
+ 
+diff --git a/xdc-plugin/Makefile b/xdc-plugin/Makefile
+index e752504..e410a75 100644
+--- a/xdc-plugin/Makefile
++++ b/xdc-plugin/Makefile
+@@ -7,10 +7,10 @@ PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
+ OBJS = xdc.o
+ VERILOG_MODULES = BANK.v
+ 
+-xdc.so: $(OBJS)
++xdc.o: $(OBJS)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared -o $@ $^ $(LDLIBS)
+ 
+-install_plugin: xdc.so
++install_plugin: xdc.o
+ 	mkdir -p $(PLUGINS_DIR)
+ 	cp $< $(PLUGINS_DIR)/$<
+ 
+@@ -25,5 +25,5 @@ test: install_plugin install_modules
+ install: install_modules install_plugin
+ 
+ clean:
+-	rm -f *.d *.o xdc.so
++	rm -f *.d *.o xdc.o
+ 
