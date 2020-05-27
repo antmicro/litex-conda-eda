@@ -22,8 +22,10 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}  [not win]
-    - {{ compiler('cxx') }}  [not win]
+    - {{ compiler('c') }}  [linux]
+    - {{ compiler('cxx') }}  [linux]
+    - clang 4.0  [osx]
+    - clangxx 4.0  [osx]
     - m2-make    [win]
     - m2w64-toolchain   [win]
   host:
