@@ -17,7 +17,6 @@ REM Compile and install libtrellis
 cd ..\libtrellis
 cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DBUILD_PYTHON=ON -DBUILD_SHARED=ON -DSTATIC_BUILD=OFF "-DCMAKE_INSTALL_PREFIX=%BASH_PREFIX%" .
 if errorlevel 1 exit 1
-find . -name *trellis*
-ls lib
+find .. -name '*trellis*'
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
