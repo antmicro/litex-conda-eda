@@ -1,19 +1,18 @@
 diff --git a/fasm-plugin/Makefile b/fasm-plugin/Makefile
-index 8c1a158..70600a2 100644
+index 8c1a158..19a35bd 100644
 --- a/fasm-plugin/Makefile
 +++ b/fasm-plugin/Makefile
-@@ -1,16 +1,16 @@
--CXX = $(shell yosys-config --cxx)
+@@ -1,16 +1,15 @@
+ CXX = $(shell yosys-config --cxx)
 -CXXFLAGS = $(shell yosys-config --cxxflags)
 -LDFLAGS = $(shell yosys-config --ldflags)
 -LDLIBS = $(shell yosys-config --ldlibs)
 -PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
-+CXX = $(shell yosys-config --cxx |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
-+CXXFLAGS = -v $(shell yosys-config --cxxflags |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
-+LDFLAGS = $(shell yosys-config --ldflags |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
-+LDLIBS = $(shell yosys-config --ldlibs |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
-+PLUGINS_DIR = $(shell yosys-config --datdir |python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")/plugins
- 
+-
++CXXFLAGS = $(shell yosys-config --cxxflags|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDFLAGS = $(shell yosys-config --ldflags|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDLIBS = $(shell yosys-config --ldlibs|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++PLUGINS_DIR = $(shell yosys-config --datdir|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")/plugins
  OBJS = fasm.o
  
 -fasm.so: $(OBJS)
@@ -26,7 +25,7 @@ index 8c1a158..70600a2 100644
  	mkdir -p $(PLUGINS_DIR)
  	cp $< $(PLUGINS_DIR)/$<
  
-@@ -18,5 +18,5 @@ test: install
+@@ -18,5 +17,5 @@ test: install
  	$(MAKE) -C tests all
  
  clean:
@@ -34,10 +33,21 @@ index 8c1a158..70600a2 100644
 +	rm -f *.d *.o fasm.o
  
 diff --git a/xdc-plugin/Makefile b/xdc-plugin/Makefile
-index e752504..e410a75 100644
+index e752504..ce8c23c 100644
 --- a/xdc-plugin/Makefile
 +++ b/xdc-plugin/Makefile
-@@ -7,10 +7,10 @@ PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
+@@ -1,16 +1,16 @@
+-CXX = $(shell yosys-config --cxx)
+-CXXFLAGS = $(shell yosys-config --cxxflags)
+-LDFLAGS = $(shell yosys-config --ldflags)
+-LDLIBS = $(shell yosys-config --ldlibs)
+-PLUGINS_DIR = $(shell yosys-config --datdir)/plugins
++CXX = $(shell yosys-config --cxx|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++CXXFLAGS = $(shell yosys-config --cxxflags|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDFLAGS = $(shell yosys-config --ldflags|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++LDLIBS = $(shell yosys-config --ldlibs|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")
++PLUGINS_DIR = $(shell yosys-config --datdir|python -c "import sys; print(sys.stdin.read().replace('\\\\','/'))")/plugins
+ 
  OBJS = xdc.o
  VERILOG_MODULES = BANK.v
  
