@@ -24,6 +24,7 @@ jobs:
   # OSX
   - stage: "EDA Tools - Synthesis"
     os: osx
+    osx_image: xcode8.3
     env:
     - PACKAGE=syn/yosys-plugins
 
