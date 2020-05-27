@@ -127,7 +127,7 @@ jobs:
     os: osx
     osx_image: xcode8.3
     env:
-    - PACKAGE=syn/yosys-plugins
+    - PACKAGE=syn/yosys-plugins     CONDA_CHANNELS=conda-forge
 
 #  - stage: "EDA Tools - PnR"
 #    os: linux
