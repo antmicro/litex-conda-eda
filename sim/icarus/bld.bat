@@ -9,8 +9,8 @@ REM gcc requires path with slashes not backslashes
 python -c "print(r'%PREFIX%'.replace('\\','/'))" > temp.txt
 set /p BASH_PREFIX=<temp.txt
 
-bash -lc "ln -s ${LOCALAPPDATA}/Temp /tmp"
 bash -lc "autoconf.sh" 
+bash -lc "ln -s ${LOCALAPPDATA}/Temp /tmp"
 if errorlevel 1 exit 1
 bash -lc "./configure --prefix=%BASH_PREFIX%"
 if errorlevel 1 exit 1
@@ -18,7 +18,6 @@ bash -lc "make  -j4"
 if errorlevel 1 exit 1
 bash -lc "make install"
 if errorlevel 1 exit 1
-
 
 
 exit 0

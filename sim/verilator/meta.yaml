@@ -24,17 +24,24 @@ requirements:
     - {{ compiler('cxx') }}     [not osx]
     - {{ compiler('c') }} 4.0   [osx]
     - {{ compiler('cxx') }} 4.0 [osx]
+    - m2-autoconf               [win]
+    - perl
   host:
-    - {{ compiler('c') }}       [not osx]
-    - {{ compiler('cxx') }}     [not osx]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - {{ compiler('c') }} 4.0   [osx]
     - {{ compiler('cxx') }} 4.0 [osx]
-    - bison
-    - flex
+    - m2-autoconf               [win]
+    - bison                     [not win]
+    - flex                      [not win]
+    - m2-bison                  [win]
+    - m2-flex                   [win]
+    - perl
     - zlib
   run:
     - {{ compiler('cxx') }}     [not osx]
     - {{ compiler('cxx') }} 4.0 [osx]
+    - perl
   {% for package in resolved_packages('host') %}
     - {{ package }}
   {% endfor %}

@@ -17,4 +17,4 @@ make -j$CPU_COUNT
 make install
 
 # Fix hard coded paths in verilator
-sed -i -e's-/.*_build_env/bin/--' $PREFIX/share/verilator/include/verilated.mk
+sed -i -e 's-/.*_build_env/bin/--' $PREFIX/share/verilator/include/verilated.mk
