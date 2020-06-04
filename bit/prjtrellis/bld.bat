@@ -19,4 +19,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_T
 if errorlevel 1 exit 1
 find .. -name '*trellis*'
 cmake --build . --target install --config Release
+md %PREFIX%\lib\trellis
+cp %SRC_DIR%/Release/pytrellis.lib %PREFIX%/lib/trellis/
+cp %SRC_DIR%/Release/trellis.lib %PREFIX%/lib/trellis/
 if errorlevel 1 exit 1
