@@ -20,6 +20,6 @@ if errorlevel 1 exit 1
 cmake --build . --target install --config Release
 if errorlevel 1 exit 1
 md %PREFIX%\lib\trellis
-cp %SRC_DIR%/Release/pytrellis.lib %PREFIX%/lib/trellis/
-cp %SRC_DIR%/Release/trellis.lib %PREFIX%/lib/trellis/
+copy %SRC_DIR%\libtrellis\Release\pytrellis.lib %PREFIX%\lib\trellis\pytrellis.lib
+copy %SRC_DIR%\libtrellis\Release\trellis.lib %PREFIX%\lib\trellis\trellis.lib
 if errorlevel 1 exit 1
