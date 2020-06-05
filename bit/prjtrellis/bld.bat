@@ -21,5 +21,6 @@ cmake --build . --target install --config Release
 if errorlevel 1 exit 1
 md %PREFIX%\lib\trellis
 copy %SRC_DIR%\libtrellis\Release\pytrellis.lib %PREFIX%\lib\trellis\pytrellis.lib
+copy %SRC_DIR%\libtrellis\Release\pytrellis.pyd %PREFIX%\lib\trellis\pytrellis.pyd
 copy %SRC_DIR%\libtrellis\Release\trellis.lib %PREFIX%\lib\trellis\trellis.lib
 if errorlevel 1 exit 1
