@@ -87,47 +87,47 @@ jobs:
 
  # EDA Tools - Place and Route
   # Linux
-  - stage: "EDA Tools - PnR"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=pnr/arachne
-  - stage: "EDA Tools - PnR"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=pnr/nextpnr/ice40
-  - stage: "EDA Tools - PnR"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=pnr/nextpnr/ecp5
-  - stage: "EDA Tools - PnR"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=pnr/nextpnr/generic
-  # Windows
+  # - stage: "EDA Tools - PnR"
+  #   os: linux
+  #   dist: xenial
+  #   env:
+  #   - PACKAGE=pnr/arachne
+  # - stage: "EDA Tools - PnR"
+  #   os: linux
+  #   dist: xenial
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/ice40
+  # - stage: "EDA Tools - PnR"
+  #   os: linux
+  #   dist: xenial
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/ecp5
+  # - stage: "EDA Tools - PnR"
+  #   os: linux
+  #   dist: xenial
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/generic
+  # # Windows
+  # - stage: "EDA Tools - PnR"
+  #   os: windows
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/ice40
   - stage: "EDA Tools - PnR"
     os: windows
     env:
-    - PACKAGE=pnr/nextpnr/ice40
-  - stage: "EDA Tools - PnR"
-    os: windows
-    env:
     - PACKAGE=pnr/nextpnr/ecp5
-  # OSX
-  - stage: "EDA Tools - PnR"
-    os: osx
-    osx_image: xcode8.3
-    env:
-    - PACKAGE=pnr/nextpnr/ice40
-  - stage: "EDA Tools - PnR"
-    os: osx
-    dist: xcode8.3
-    env:
-    - PACKAGE=pnr/nextpnr/ecp5
-    - DOT_ON_STDOUT=true
+  # # OSX
+  # - stage: "EDA Tools - PnR"
+  #   os: osx
+  #   osx_image: xcode8.3
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/ice40
+  # - stage: "EDA Tools - PnR"
+  #   os: osx
+  #   dist: xcode8.3
+  #   env:
+  #   - PACKAGE=pnr/nextpnr/ecp5
+  #   - DOT_ON_STDOUT=true
 
 #  - stage: "EDA Tools - PnR"
 #    os: linux
@@ -136,9 +136,9 @@ jobs:
 #    - PACKAGE=pnr/vtr                 CONDA_CHANNELS=conda-forge
 
  # EDA Tools - Formal
-  - stage: "EDA Tools - Formal"
-    env:
-    - PACKAGE=formal/symbiyosys
+  # - stage: "EDA Tools - Formal"
+  #   env:
+  #   - PACKAGE=formal/symbiyosys
 
 before_install:
  - source $TRAVIS_BUILD_DIR/.travis/common.sh
