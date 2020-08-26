@@ -38,6 +38,8 @@ requirements:
     - gperftools [not win]
     - libunwind [not win]
 
+channel_priority: flexible
+
 about:
   home: https://github.com/alainmarcel/Surelog
   license: Apache
