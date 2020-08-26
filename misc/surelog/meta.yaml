@@ -1,0 +1,45 @@
+{% set version = '%s_%04i_%s'|format(GIT_DESCRIBE_TAG|replace('v','') or '0.X', GIT_DESCRIBE_NUMBER|int, GIT_DESCRIBE_HASH or 'gUNKNOWN') %}
+
+package:
+  name: surelog
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/alainmarcel/Surelog
+  git_rev: master
+
+build:
+  number: {{ environ.get('DATE_NUM') }}
+  string: {{ environ.get('DATE_STR') }}
+  script_env:
+    - CI
+    - TRAVIS
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - python {{ python }}
+    - cmake
+    - zlib
+    - pkg-config
+    - libuuid [not win]
+    - gperftools [not win]
+    - flex [not win]
+    - libunwind [not win]
+    - swig
+    - m2w64-toolchain [win]
+    - m2-base         [win]
+    - m2-make         [win]
+    - vs2017_win-64   [win]
+
+  run:
+    - python {{ python }}
+    - gperftools [not win]
+    - libunwind [not win]
+
+about:
+  home: https://github.com/alainmarcel/Surelog
+  license: Apache
+  license_file: LICENSE
+  summary: 'Parser/Compiler for SystemVerilog'

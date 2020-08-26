@@ -24,6 +24,22 @@ jobs:
     dist: xenial
     env:
     - PACKAGE=misc/magic
+  - stage: "No dependencies"
+    os: linux
+    dist: xenial
+    env:
+    - PACKAGE=misc/surelog
+  # Windows
+  - stage: "No dependencies"
+    os: windows
+    env:
+    - PACKAGE=misc/surelog
+  # OSX
+  - stage: "No dependencies"
+    os: osx
+    osx_image: xcode8.3
+    env:
+    - PACKAGE=misc/surelog
 
  # EDA Tools - Bitstream Tools
   # Linux
