@@ -39,10 +39,10 @@ jobs:
     os: windows
     env:
     - PACKAGE=bit/icestorm
-  - stage: "EDA Tools - Bitstream"
-    os: windows
-    env:
-    - PACKAGE=bit/prjtrellis
+#  - stage: "EDA Tools - Bitstream"
+#    os: windows
+#    env:
+#    - PACKAGE=bit/prjtrellis
   # OSX
   - stage: "EDA Tools - Bitstream"
     os: osx
