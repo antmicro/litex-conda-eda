@@ -6,7 +6,6 @@ addons:
     update: false
 
 stages:
-  - "EDA Tools - Misc"
   - "EDA Tools - Bitstream"
   - "EDA Tools - Simulation"
   - "EDA Tools - Synthesis"
@@ -16,44 +15,10 @@ stages:
 
 jobs:
  include:
- # EDA Tools - Misc
-  - stage: "EDA Tools - Misc"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=misc/magic
- # EDA Tools - Bitstream Tools
-  # Linux
-  - stage: "EDA Tools - Bitstream"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=bit/icestorm
-  - stage: "EDA Tools - Bitstream"
-    os: linux
-    dist: xenial
-    env:
-    - PACKAGE=bit/prjtrellis
-  # Windows
   - stage: "EDA Tools - Bitstream"
     os: windows
     env:
-    - PACKAGE=bit/icestorm
-#  - stage: "EDA Tools - Bitstream"
-#    os: windows
-#    env:
-#    - PACKAGE=bit/prjtrellis
-  # OSX
-  - stage: "EDA Tools - Bitstream"
-    os: osx
-    osx_image: xcode8.3
-    env:
-    - PACKAGE=bit/icestorm
-  - stage: "EDA Tools - Bitstream"
-    os: osx
-    env:
     - PACKAGE=bit/prjtrellis
-
  # EDA Tools - Simulation
   # Linux
   - stage: "EDA Tools - Simulation"
