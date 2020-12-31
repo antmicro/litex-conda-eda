@@ -3,10 +3,6 @@
 set -e
 set -x
 
-if [ x"$TRAVIS" = xtrue ]; then
-	CPU_COUNT=2
-fi
-
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 source $HOME/.cargo/env
 
