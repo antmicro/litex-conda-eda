@@ -8,6 +8,22 @@ defaults:
   run:
     shell: bash
 jobs:
+  verible-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "sim/verible"
+      USE_SYSTEM_GCC_VERSION: "8"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: verible_linux_output_log
+          path: /tmp/output.log
   surelog-uhdm-linux:
     runs-on: "ubuntu-16.04"
     env:
