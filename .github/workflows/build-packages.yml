@@ -8,6 +8,22 @@ defaults:
   run:
     shell: bash
 jobs:
+  slang-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "sim/slang"
+      OS_NAME: "linux"
+      USE_SYSTEM_GCC_VERSION: "8"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: slang_linux_output_log
+          path: /tmp/output.log
   sv-parser-linux:
     runs-on: "ubuntu-16.04"
     env:
