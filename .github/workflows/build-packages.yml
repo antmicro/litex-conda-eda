@@ -8,6 +8,21 @@ defaults:
   run:
     shell: bash
 jobs:
+  moore-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "sim/moore"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: moore_linux_output_log
+          path: /tmp/output.log
   surelog-linux:
     runs-on: "ubuntu-16.04"
     env:
