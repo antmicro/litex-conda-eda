@@ -8,6 +8,21 @@ defaults:
   run:
     shell: bash
 jobs:
+  tree-sitter-verilog-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "sim/tree-sitter-verilog"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: tree_sitter_verilog_linux_output_log
+          path: /tmp/output.log
   odin-ii-linux:
     runs-on: "ubuntu-16.04"
     env:
