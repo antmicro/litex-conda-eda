@@ -8,6 +8,16 @@ defaults:
   run:
     shell: bash
 jobs:
+  symbiflow-toolchain-xray-linux:
+    runs-on: "ubuntu-16.04"
+    needs: ["symbiflow-yosys-plugins-linux", "symbiflow-vtr-linux"]
+    env:
+      PACKAGE: "sim/symbiflow-toolchain-xray"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
   netlistsvg-linux:
     runs-on: "ubuntu-16.04"
     env:
@@ -164,16 +174,16 @@ jobs:
         #with:
           #submodules: 'true'
       #- uses: antmicro/litex-conda-ci@move-to-ghactions
-  #icarus-linux:
-    #runs-on: "ubuntu-16.04"
-    #env:
-      #PACKAGE: "sim/icarus"
-      #OS_NAME: "linux"
-    #steps:
-      #- uses: actions/checkout@v2
-        #with:
-          #submodules: 'true'
-      #- uses: antmicro/litex-conda-ci@move-to-ghactions
+  icarus-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "sim/icarus"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
   #verilator-linux:
     #runs-on: "ubuntu-16.04"
     #env:
@@ -214,41 +224,41 @@ jobs:
         #with:
           #submodules: 'true'
       #- uses: antmicro/litex-conda-ci@move-to-ghactions
-  #symbiflow-yosys-3_2_1-linux:
-    #runs-on: "ubuntu-16.04"
-    #needs: "icarus-linux"
-    #env:
-      #PACKAGE: "syn/symbiflow-yosys"
-      #OS_NAME: "linux"
-      #LIBFFI_VERSION: "3.2.1"
-    #steps:
-      #- uses: actions/checkout@v2
-        #with:
-          #submodules: 'true'
-      #- uses: antmicro/litex-conda-ci@move-to-ghactions
-  #symbiflow-yosys-3_3-linux:
-    #runs-on: "ubuntu-16.04"
-    #needs: "icarus-linux"
-    #env:
-      #PACKAGE: "syn/symbiflow-yosys"
-      #OS_NAME: "linux"
-      #LIBFFI_VERSION: "3.3"
-    #steps:
-      #- uses: actions/checkout@v2
-        #with:
-          #submodules: 'true'
-      #- uses: antmicro/litex-conda-ci@move-to-ghactions
-  #symbiflow-yosys-plugins-linux:
-    #runs-on: "ubuntu-16.04"
-    #needs: ["icarus-linux", "symbiflow-yosys-3_2_1-linux", "symbiflow-yosys-3_3-linux"]
-    #env:
-      #PACKAGE: "syn/symbiflow-yosys-plugins"
-      #OS_NAME: "linux"
-    #steps:
-      #- uses: actions/checkout@v2
-        #with:
-          #submodules: 'true'
-      #- uses: antmicro/litex-conda-ci@move-to-ghactions
+  symbiflow-yosys-3_2_1-linux:
+    runs-on: "ubuntu-16.04"
+    needs: "icarus-linux"
+    env:
+      PACKAGE: "syn/symbiflow-yosys"
+      OS_NAME: "linux"
+      LIBFFI_VERSION: "3.2.1"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+  symbiflow-yosys-3_3-linux:
+    runs-on: "ubuntu-16.04"
+    needs: "icarus-linux"
+    env:
+      PACKAGE: "syn/symbiflow-yosys"
+      OS_NAME: "linux"
+      LIBFFI_VERSION: "3.3"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+  symbiflow-yosys-plugins-linux:
+    runs-on: "ubuntu-16.04"
+    needs: ["icarus-linux", "symbiflow-yosys-3_2_1-linux" , "symbiflow-yosys-3_3-linux"]
+    env:
+      PACKAGE: "syn/symbiflow-yosys-plugins"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
   #vtr-linux:
     #runs-on: "ubuntu-16.04"
     #env:
@@ -279,16 +289,16 @@ jobs:
         #with:
           #submodules: 'true'
       #- uses: antmicro/litex-conda-ci@move-to-ghactions
-  #symbiflow-vtr-linux:
-    #runs-on: "ubuntu-16.04"
-    #env:
-      #PACKAGE: "pnr/symbiflow-vtr"
-      #OS_NAME: "linux"
-    #steps:
-      #- uses: actions/checkout@v2
-        #with:
-          #submodules: 'true'
-      #- uses: antmicro/litex-conda-ci@move-to-ghactions
+  symbiflow-vtr-linux:
+    runs-on: "ubuntu-16.04"
+    env:
+      PACKAGE: "pnr/symbiflow-vtr"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
   #symbiflow-vtr-gui-linux:
     #runs-on: "ubuntu-16.04"
     #env:
