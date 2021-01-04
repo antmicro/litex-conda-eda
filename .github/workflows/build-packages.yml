@@ -8,6 +8,53 @@ defaults:
   run:
     shell: bash
 jobs:
+  antmicro-yosys-complete-linux:
+    runs-on: "ubuntu-16.04"
+    needs: "antmicro-yosys-plugins-linux"
+    env:
+      PACKAGE: "sim/antmicro-yosys-complete"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: antmicro_yosys_complete_linux_output_log
+          path: /tmp/output.log
+  antmicro-yosys-plugins-linux:
+    runs-on: "ubuntu-16.04"
+    needs: ["antmicro-yosys-linux", "icarus-linux"]
+    env:
+      PACKAGE: "syn/antmicro-yosys-plugins"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: antmicro_yosys_plugins_linux_output_log
+          path: /tmp/output.log
+  antmicro-yosys-linux:
+    runs-on: "ubuntu-16.04"
+    needs: "icarus-linux"
+    env:
+      PACKAGE: "syn/antmicro-yosys"
+      OS_NAME: "linux"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: antmicro/litex-conda-ci@move-to-ghactions
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: antmicro_yosys_linux_output_log
+          path: /tmp/output.log
   symbiflow-toolchain-xray-linux:
     runs-on: "ubuntu-16.04"
     needs: ["symbiflow-yosys-plugins-linux", "symbiflow-vtr-linux"]
