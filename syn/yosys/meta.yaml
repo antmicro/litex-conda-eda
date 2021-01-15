@@ -1,5 +1,6 @@
 # Use `conda-build-prepare` before building for a better version string.
 {% set version = '%s_%04i_%s'|format(GIT_DESCRIBE_TAG|replace('yosys-', '') or '0.X', GIT_DESCRIBE_NUMBER|int, GIT_DESCRIBE_HASH or 'gUNKNOWN') %}
+{% set python = '3.8.*' %}
 
 package:
   name: yosys
@@ -41,7 +42,7 @@ requirements:
     - m2-bison 3.0.4            [win]
     - m2-flex  2.6.0            [win]
     - make                      [not win]
-    - python 3.7
+    - python {{ python }}
     - {{ compiler('c') }}       [not osx]
     - {{ compiler('cxx') }}     [not osx]
     - {{ compiler('c') }} 4.0   [osx]
@@ -55,7 +56,7 @@ requirements:
     - flex                 [not win]
     - libffi               [not win]
     - pkg-config           [not win]
-    - python 3.7
+    - python {{ python }}
     - tk   [osx]
     - gawk [osx]
   run:
