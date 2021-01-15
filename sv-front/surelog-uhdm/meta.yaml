@@ -26,11 +26,11 @@ requirements:
     - flex
     - libunwind
     - swig
+  run:
     - python {{ python }}
     - gperftools
     - libunwind
+
 test:
-    requires:
-        - python {{ python }}
     commands:
         - surelog-uhdm --version
