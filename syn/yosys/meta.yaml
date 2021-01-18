@@ -60,7 +60,7 @@ requirements:
     - tk   [osx]
     - gawk [osx]
   run:
-    - python {{ python }}
+    - python >= 3.7
     - tk       [osx]
     - gawk     [osx]
     - iverilog [osx]
