@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 72ca15e36..6f5971d8f 100644
+index 72ca15e36..85f131096 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -342,6 +342,19 @@ LDLIBS := $(filter-out -lrt,$(LDLIBS))
@@ -22,17 +22,3 @@ index 72ca15e36..6f5971d8f 100644
  
  else ifneq ($(CONFIG),none)
  $(error Invalid CONFIG setting '$(CONFIG)'. Valid values: clang, gcc, gcc-4.8, emcc, mxe, msys2, msys2-64)
-@@ -994,6 +1007,13 @@ config-gprof: clean
- config-sudo:
-        echo "INSTALL_SUDO := sudo" >> Makefile.conf
- 
-+config-conda-linux: clean
-+       echo 'CONFIG := conda-linux' > Makefile.conf
-+
-+config-conda-mac: clean
-+       echo 'CONFIG := conda-mac' > Makefile.conf
-+
-+
- echo-yosys-ver:
-        @echo "$(YOSYS_VER)"
- 
