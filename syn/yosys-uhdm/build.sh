@@ -9,7 +9,7 @@ export LDFLAGS="$CXXFLAGS -L$BUILD_PREFIX/lib -lrt -ltinfo"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$BUILD_PREFIX/lib"
 
 cd Surelog && make PREFIX=$PWD/../image release install -j$CPU_COUNT && cd ..
-make CONFIG=conda-linux PROGRAM_PREFIX=uhdm- PREFIX=$PWD/image install -j$CPU_COUNT
+make ENABLE_READLINE=0 CONFIG=conda-linux PROGRAM_PREFIX=uhdm- PREFIX=$PWD/image install -j$CPU_COUNT
 
 mkdir -p "$PREFIX/"
 
