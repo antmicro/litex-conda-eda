@@ -9,7 +9,14 @@ cd yosys
 
 make V=1 -j$CPU_COUNT
 make install V=1 -j$CPU_COUNT
-cp yosys "$PREFIX/bin/antmicro-yosys"
-cp yosys-config "$PREFIX/bin/yosys-config"
+
+pushd $PREFIX/bin
+
+for filename in `ls yosys*`;
+do
+    mv $filename "antmicro-"$filename
+done
+
+popd
 
 $PREFIX/bin/antmicro-yosys -V
