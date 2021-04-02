@@ -1,6 +1,6 @@
 {% set ns = namespace(surelog_version='0.0', verilator_version='0.0') %}
 {% for package in resolved_packages('host') %}
-  {% if package.startswith( 'surelog-uhdm ' ) %}
+  {% if package.startswith( 'surelog-uhdm-verilator ' ) %}
     {% set ns.surelog_version = package.split()[1] %}
   {% endif %}
   {% if package.startswith( 'verilator-uhdm ' ) %}
@@ -20,8 +20,8 @@ build:
 
 requirements:
   host:
-    - surelog-uhdm=*={{ DATE_STR }}_{{ py_suffix }}
+    - surelog-uhdm-verilator=*={{ DATE_STR }}_{{ py_suffix }}
     - verilator-uhdm=*={{ DATE_STR }}
   run:
-    - surelog-uhdm={{ ns.surelog_version }}={{ DATE_STR }}_{{ py_suffix }}
+    - surelog-uhdm-verilator={{ ns.surelog_version }}={{ DATE_STR }}_{{ py_suffix }}
     - verilator-uhdm={{ ns.verilator_version }}={{ DATE_STR }}

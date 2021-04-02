@@ -1,6 +1,6 @@
 {% set ns = namespace(surelog_version='0.0', yosys_version='0.0') %}
 {% for package in resolved_packages('host') %}
-  {% if package.startswith( 'surelog-uhdm ' ) %}
+  {% if package.startswith( 'surelog-uhdm-yosys ' ) %}
     {% set ns.surelog_version = package.split()[1] %}
   {% endif %}
   {% if package.startswith( 'yosys-uhdm ' ) %}
@@ -21,8 +21,8 @@ build:
 
 requirements:
   host:
-    - surelog-uhdm=*={{ build_string }}
+    - surelog-uhdm-yosys=*={{ build_string }}
     - yosys-uhdm=*={{ build_string }}
   run:
-    - surelog-uhdm={{ ns.surelog_version }}={{ build_string }}
+    - surelog-uhdm-yosys={{ ns.surelog_version }}={{ build_string }}
     - yosys-uhdm={{ ns.yosys_version }}={{ build_string }}
