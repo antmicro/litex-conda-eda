@@ -5,7 +5,7 @@
 {% set py_suffix = 'py%s'|format(python_version|replace('.', '')) %}
 
 package:
-  name: surelog-uhdm
+  name: surelog-uhdm-yosys
   version: {{ version }}
 
 source:
