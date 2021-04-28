@@ -33,6 +33,8 @@ requirements:
     - flex
     - libunwind
     - swig
+  host:
+    - libuuid
   run:
     - python {{ python_version }}
     - gperftools

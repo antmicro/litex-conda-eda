@@ -4,7 +4,7 @@ set -e
 set -x
 
 cd Surelog
-make PREFIX=./image release install -j$CPU_COUNT
+make PREFIX=../image release install -j$CPU_COUNT
 
 mkdir -p "$PREFIX/bin"
 mkdir -p "$PREFIX/lib/surelog/sv"
